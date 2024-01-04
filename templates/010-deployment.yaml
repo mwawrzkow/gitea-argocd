@@ -32,7 +32,7 @@ spec:
         image: gitea/gitea:latest
         env:
           - name: GITEA__server__ROOT_URL
-            value: "http://git.k8s.com/" 
+            value: {{ .Values.ingress.host  }}} 
         ports:
         - containerPort: 3000
           name: gitea
