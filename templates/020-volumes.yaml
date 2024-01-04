@@ -1,0 +1,16 @@
+---
+###################################################
+# Persistence Volume Claim for Gitea
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: git-pvc
+  namespace: gitea-repo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn-durable
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: "git-pv"
