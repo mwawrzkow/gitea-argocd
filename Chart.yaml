@@ -1,0 +1,6 @@
+apiVersion: v2
+name: gitea
+description: A Helm chart for Gitea on Kubernetes with Longhorn
+type: application
+version: 0.1.0
+appVersion: "1.10.2" # Use the version of Gitea you want to deploy
