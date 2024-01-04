@@ -20,7 +20,10 @@ metadata:
   name: git-tls
   namespace: gitea-repo
   annotations:
-{{ toYaml .Values.ingress.annotations | indent 4 }}
+    nginx.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.annotations["nginx.ingress.kubernetes.io/backend-protocol"] }}
+    nginx.ingress.kubernetes.io/force-ssl-redirect: {{ .Values.ingress.annotations["nginx.ingress.kubernetes.io/force-ssl-redirect"] }}
+    cert-manager.io/issuer: {{ .Values.ingress.annotations["cert-manager.io/issuer"] }}
+    nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.annotations["nginx.ingress.kubernetes.io/whitelist-source-range"] }}
 spec:
   tls:
   - hosts:
