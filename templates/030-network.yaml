@@ -26,6 +26,10 @@ apiVersion: networking.k8s.io/v1
 metadata:
   name: git-ingress
   namespace: git
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.1.0/24" # Adjust the IP range as needed
 spec:
   ingressClassName: nginx
   tls:
