@@ -2,8 +2,8 @@ persistence:
   size: 1Gi
 
 ingress:
-  host: <your domain name>
-  protocol: HTTPS
-  ssl: true
-  issuer: my-ca-issuer
+  host: "<your domain name>"
+  protocol: "HTTPS"
+  ssl: "true"
+  issuer: "my-ca-issuer"
   whitelist:
