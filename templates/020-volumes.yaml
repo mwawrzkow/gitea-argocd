@@ -5,7 +5,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: git-pvc
-  namespace: gitea-repo
+  namespace: gitea-testing
 spec:
   accessModes:
     - ReadWriteOnce
