@@ -20,7 +20,7 @@ metadata:
   name: git-tls
   namespace: gitea-repo
   annotations:
-    {{- toYaml .Values.ingress.annotations | indent 4 }}
+{{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:
   tls:
   - hosts:
