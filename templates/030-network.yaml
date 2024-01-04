@@ -27,15 +27,15 @@ metadata:
   name: git-ingress
   namespace: gitea-testing
   annotations:
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.1.0/24" # Adjust the IP range as needed
+    {{ .Values.ingress.annotations | toYaml | nindent 4 }}
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - gitea.k8s.com
+    - {{ .Values.ingress.host }}
     secretName: tls-gitea
   rules:
-  - host: gitea.k8s.com
+  - host: {{ .Values.ingress.host }}
     http:
       paths:
       - path: /

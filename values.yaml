@@ -1,0 +1,11 @@
+persistence: 
+  size: 1Gi
+
+ingress:
+  host: <your domain name>
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: <http or https>
+    # If using SSL/TLS, uncomment the next line
+    nginx.ingress.kubernetes.io/force-ssl-redirect: <true or false>
+    cert-manager.io/issuer: <your issuer>
+    nginx.ingress.kubernetes.io/whitelist-source-range: <your IP range> # Adjust the IP range as needed
