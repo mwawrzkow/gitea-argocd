@@ -1,8 +1,8 @@
-ingress: 
+ingress:
+  enabled: true
   host: "example.com"
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    # If using SSL/TLS, uncomment the next line
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/whitelist-source-range: "
+    nginx.ingress.kubernetes.io/whitelist-source-range: "" # Add your IP range if needed

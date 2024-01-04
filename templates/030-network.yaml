@@ -1,9 +1,6 @@
-###############################
-# Service
-###############################
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: gitea-service
   namespace: gitea-repo
@@ -16,18 +13,14 @@ spec:
   - name: gitea-ssh
     port: 22
 
-
 ---
-###################################################
-# Ingress
-###################################################
-kind: Ingress
 apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: git-tls
   namespace: gitea-repo
   annotations:
-    {{ .Values.ingress.annotations }}
+    {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
   tls:
   - hosts:
