@@ -27,14 +27,14 @@ metadata:
   name: git-tls
   namespace: gitea-repo
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    {{ .Values.ingress.annotations }}
 spec:
   tls:
   - hosts:
-    - gitea.foo.com
+    - {{ .Values.ingress.host }}
     secretName: tls-gitea
   rules:
-  - host: gitea.foo.com
+  - host: {{ .Values.ingress.host }}
     http:
       paths:
       - path: /
