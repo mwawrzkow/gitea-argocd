@@ -27,7 +27,7 @@ metadata:
   name: git-ingress
   namespace: gitea-testing
   annotations:
-{{ toYaml .Values.ingress.annotations | indent 4 }}
+{{ .Values.ingress.annotations | indent 4 }}
 spec:
   ingressClassName: nginx
   tls:
