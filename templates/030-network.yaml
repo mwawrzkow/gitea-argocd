@@ -27,10 +27,10 @@ metadata:
   name: git-ingress
   namespace: gitea-testing
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: {{ .Values.ingress.protocol }}
-    nginx.ingress.kubernetes.io/force-ssl-redirect: {{ .Values.ingress.ssl }}
-    cert-manager.io/issuer: {{ .Values.ingress.issuer }}
-    nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.ingress.whitelist }}
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/issuer: "my-ca-issuer"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.1.0/24"
 spec:
   ingressClassName: nginx
   tls:
