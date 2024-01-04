@@ -24,6 +24,7 @@ spec:
 
 
 ---
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -32,8 +33,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn-durable
+  storageClassName: longhorn # Ensure this matches the Longhorn StorageClass in your cluster
   resources:
     requests:
       storage: 5Gi
-  volumeName: "git-pv"
