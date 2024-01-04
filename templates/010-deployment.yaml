@@ -47,9 +47,6 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           failureThreshold: 10
-      env:
-        - name: GIT_DOMAIN
-          value: git.k8s.com
       volumes:
       - name: git-data
         persistentVolumeClaim:

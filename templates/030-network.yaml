@@ -36,7 +36,7 @@ spec:
   tls:
   - hosts:
     - git.k8s.com
-    secretName: tls-gitea
+    secretName: gitea-secret
   rules:
   - host: git.k8s.com
     http:
