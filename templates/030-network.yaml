@@ -12,7 +12,7 @@ spec:
     app: gitea
   ports:
   - name: gitea-http
-    port: 3000
+    port: 80
   - name: gitea-ssh
     port: 22
 
