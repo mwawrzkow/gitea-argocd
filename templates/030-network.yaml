@@ -37,7 +37,7 @@ spec:
     - gitea.k8s.com
     secretName: tls-gitea
   rules:
-  - host: gitea.foo.com
+  - host: gitea.k8s.com
     http:
       paths:
       - path: /
