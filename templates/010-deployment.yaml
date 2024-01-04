@@ -38,6 +38,15 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: git-data
+        livenessProbe:
+          httpGet:
+            path: /api/healthz
+            port: http
+          initialDelaySeconds: 200
+          timeoutSeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 10
       volumes:
       - name: git-data
         persistentVolumeClaim:
