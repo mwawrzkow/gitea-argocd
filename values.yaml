@@ -3,8 +3,8 @@ persistence:
 
 ingress:
   host: <your domain name>
-  annotations: |
-    nginx.ingress.kubernetes.io/backend-protocol: <http or https>
-    nginx.ingress.kubernetes.io/force-ssl-redirect: <true or false>
-    cert-manager.io/issuer: <your issuer>
-    nginx.ingress.kubernetes.io/whitelist-source-range: <your IP range> 
+  annotations: 
+    protocol: HTTPS
+    ssl: true
+    issuer: my-ca-issuer
+    whitelist:
