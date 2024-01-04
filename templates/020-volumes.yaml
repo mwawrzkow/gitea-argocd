@@ -12,5 +12,4 @@ spec:
   storageClassName: longhorn-durable
   resources:
     requests:
-      storage: 5Gi
-  volumeName: "git-pvc"
+      storage: 2Gi
