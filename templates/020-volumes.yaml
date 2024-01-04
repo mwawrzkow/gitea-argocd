@@ -20,10 +20,8 @@ spec:
     driver: driver.longhorn.io
     fsType: ext4
     volumeHandle: git-data
-  storageClassName: longhorn-durable
+  storageClassName: longhorn
 
-
----
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
