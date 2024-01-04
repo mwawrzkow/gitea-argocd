@@ -3,8 +3,7 @@ persistence:
 
 ingress:
   host: <your domain name>
-  annotations: 
-    protocol: HTTPS
-    ssl: true
-    issuer: my-ca-issuer
-    whitelist:
+  protocol: HTTPS
+  ssl: true
+  issuer: my-ca-issuer
+  whitelist:
