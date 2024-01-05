@@ -32,6 +32,10 @@ spec:
   - hosts:
     - git.k8s.com
     secretName: gitea-secret
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.1.0/24" # Adjust the IP range as needed
   rules:
   - host: git.k8s.com
     http:
