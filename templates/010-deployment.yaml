@@ -27,6 +27,8 @@ spec:
       labels:
         app: gitea
     spec:
+      hostname: k8s.com
+      subdomain: git
       containers:
       - name: gitea
         image: gitea/gitea:1.13.2
