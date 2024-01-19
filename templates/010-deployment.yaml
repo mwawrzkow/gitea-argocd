@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: gitea
-        image: {{ .Values.image }}}
+        image: {{ .Values.image }}
         ports:
         - containerPort: 3000
           name: gitea-http
