@@ -1,3 +1,5 @@
 persistence: 
   size: 2Gi
 
+
+image: harbor.k8s.com/core/gitea:1.15.5.1 # It's my custom helm charts profiver! For personal use set it to: gitea/gitea:1.13.2
