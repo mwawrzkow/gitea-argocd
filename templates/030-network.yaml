@@ -43,5 +43,5 @@ spec:
           service:
             name: gitea-service
             port:
-              number: 3000
+              number: 80
             
