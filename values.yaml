@@ -7,7 +7,6 @@ ingress:
   enabled: true
   className: nginx
   host: host.host.host
-  clusterHostname: host.host.host
   tls:
     enabled: true
     secretName: gitea
