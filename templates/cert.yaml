@@ -5,10 +5,10 @@ metadata:
 spec:
   secretName: gitea # <-- cert-manager will create/update this secret
   dnsNames:
-    - git.k8s.com
+    - {{ .Values.ingress.host }}
   issuerRef:
-    name: {{ .Values.issuerRef.name }} # your ClusterIssuer
-    kind: {{ .Values.issuerRef.kind }}
+    name: {{ .Values.ingress.issuerRef.name }} # your ClusterIssuer
+    kind: {{ .Values.ingress.issuerRef.kind }}
   usages:
     - digital signature
     - key encipherment
