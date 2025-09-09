@@ -50,5 +50,5 @@ spec:
               service:
                 name: gitea-service
                 port:
-                  number: gitea-http
+                  name: gitea-http
 {{- end }}
