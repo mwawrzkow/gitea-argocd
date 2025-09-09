@@ -6,6 +6,7 @@ spec:
   secretName: gitea # <-- cert-manager will create/update this secret
   dnsNames:
     - {{ .Values.ingress.host }}
+    - {{ .Values.ingress.clusterHostname }}
   issuerRef:
     name: {{ .Values.ingress.issuerRef.name }} # your ClusterIssuer
     kind: {{ .Values.ingress.issuerRef.kind }}
