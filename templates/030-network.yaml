@@ -20,27 +20,39 @@ spec:
 ###################################################
 # Ingress
 ###################################################
-kind: Ingress
+{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: git-ingress
-  namespace: git
+  name: {{ include "gitea.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/client-max-body-size: "100m"
     nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-
+    {{- if eq .Values.ingress.issuerRef.kind "ClusterIssuer" }}
+    cert-manager.io/cluster-issuer: "{{ .Values.ingress.issuerRef.name }}"
+    {{- else if eq .Values.ingress.issuerRef.kind "Issuer" }}
+    cert-manager.io/issuer: "{{ .Values.ingress.issuerRef.name }}"
+    {{- end }}
 spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+  {{- end }}
   rules:
-  - host: git.k8s.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: gitea-service
-            port:
-              number: 80
-            
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "gitea.fullname" . }}-http
+                port:
+                  number: {{ .Values.service.http.port }}
+{{- end }}

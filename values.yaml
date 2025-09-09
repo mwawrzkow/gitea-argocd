@@ -1,5 +1,15 @@
 persistence: 
-  size: 2Gi
+  size: 100Gi
 
 
-image: harbor.k8s.com/core/gitea:1.15.5.1 # It's my custom helm charts profiver! For personal use set it to: gitea/gitea:1.13.2
+image: gitea/gitea:1.13.2
+ingress:
+  enabled: true
+  className: nginx
+  host: host.host.host
+  tls:
+    enabled: true
+    secretName: gitea-tls
+  issuerRef:
+    name: ISSUER
+    kind: ClusterIssuer   # or Issuer

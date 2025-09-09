@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: git-crt
+spec:
+  secretName: gitea # <-- cert-manager will create/update this secret
+  commonName: git.k8s.com
+  dnsNames:
+    - git.k8s.com
+  issuerRef:
+    name: vault-pki-k8s # your ClusterIssuer
+    kind: ClusterIssuer
+  privateKey:
+    rotationPolicy: Always
+    algorithm: RSA
+    size: 2048
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
