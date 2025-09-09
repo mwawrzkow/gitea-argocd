@@ -1,11 +1,3 @@
-###################################################
-# Namespace Gitea
-###################################################
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: git
-
 ###############################
 # Deplyoment Gitea
 ###############################
@@ -14,7 +6,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gitea
-  namespace: git
   labels:
     app: gitea
 spec:

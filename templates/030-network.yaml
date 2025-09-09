@@ -6,7 +6,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: gitea-service
-  namespace: git
 spec:
   selector:
     app: gitea
