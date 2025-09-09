@@ -51,7 +51,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "gitea.fullname" . }}-http
+                name: gitea-service
                 port:
-                  number: {{ .Values.service.http.port }}
+                  number: gitea-http
 {{- end }}
