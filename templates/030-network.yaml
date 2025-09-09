@@ -13,8 +13,6 @@ spec:
   - name: gitea-http
     port: 80
     targetPort: 3000
-  - name: gitea-ssh
-    port: 22
 ---
 ###################################################
 # Ingress
