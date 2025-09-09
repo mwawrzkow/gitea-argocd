@@ -9,7 +9,7 @@ ingress:
   host: host.host.host
   tls:
     enabled: true
-    secretName: gitea-tls
+    secretName: gitea
   issuerRef:
     name: ISSUER
     kind: ClusterIssuer   # or Issuer
