@@ -30,6 +30,9 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/client-max-body-size: "100m"
     nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     {{- if eq .Values.ingress.issuerRef.kind "ClusterIssuer" }}
     cert-manager.io/cluster-issuer: "{{ .Values.ingress.issuerRef.name }}"
     {{- else if eq .Values.ingress.issuerRef.kind "Issuer" }}
