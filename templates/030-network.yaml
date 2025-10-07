@@ -20,41 +20,29 @@ spec:
 ###################################################
 # Ingress
 ###################################################
-{{- if .Values.ingress.enabled }}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
   name: gitea
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/client-max-body-size: "1G"
-    nginx.ingress.kubernetes.io/proxy-body-size: "1G"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    {{- if eq .Values.ingress.issuerRef.kind "ClusterIssuer" }}
-    cert-manager.io/cluster-issuer: "{{ .Values.ingress.issuerRef.name }}"
-    {{- else if eq .Values.ingress.issuerRef.kind "Issuer" }}
-    cert-manager.io/issuer: "{{ .Values.ingress.issuerRef.name }}"
-    {{- end }}
 spec:
-  ingressClassName: {{ .Values.ingress.className }}
-  {{- if .Values.ingress.tls.enabled }}
-  tls:
-    - hosts:
-        - {{ .Values.ingress.host }}
+  virtualhost:
+    fqdn: {{ .Values.ingress.host }}
+    # Redirect plain HTTP -> HTTPS (equivalent of force-ssl-redirect)
+    insecure:
+      policy: Redirect
+    {{- if .Values.ingress.tls.enabled }}
+    tls:
       secretName: {{ .Values.ingress.tls.secretName }}
-  {{- end }}
-  rules:
-    - host: {{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: gitea-service
-                port:
-                  name: gitea-http
-{{- end }}
+    {{- end }}
+  routes:
+    - conditions:
+        - prefix: /
+      # Per-route timeouts approximating your NGINX read/send/connect timeouts
+      timeoutPolicy:
+        # How long Envoy will wait for the upstream to respond
+        response: 3600s
+        # Idle timeout for the connection (no data in either direction)
+        idle: 3600s
+      services:
+        - name: gitea-service
+          port: 80
