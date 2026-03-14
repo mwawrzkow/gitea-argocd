@@ -12,3 +12,18 @@ spec:
   usages:
     - digital signature
     - key encipherment
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.ingress.tls.secretName }}-rodzinka
+spec:
+  secretName: gitea # <-- cert-manager will create/update this secret
+  dnsNames:
+    - {{ .Values.ingress.hostRodzinka }}
+  issuerRef:
+    name: {{ .Values.ingress.issuerRef.name }} # your ClusterIssuer
+    kind: {{ .Values.ingress.issuerRef.kind }}
+  usages:
+    - digital signature
+    - key encipherment

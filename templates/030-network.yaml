@@ -62,7 +62,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.host }}
-      secretName: {{ .Values.ingress.tls.secretName }}
+      secretName: {{ .Values.ingress.tls.secretName }}-rodzinka
   {{- end }}
   rules:
     - host: {{ .Values.ingress.hostRodzinka }}
