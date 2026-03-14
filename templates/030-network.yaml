@@ -65,7 +65,7 @@ spec:
       secretName: {{ .Values.ingress.tls.secretName }}
   {{- end }}
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{ .Values.ingress.hostRodzinka }}
       http:
         paths:
           - path: /
